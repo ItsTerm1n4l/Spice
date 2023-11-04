@@ -1,0 +1,144 @@
+#!/bin/python
+from re import sub
+from os.path import abspath, realpath, join, dirname
+import os
+from pathlib import Path
+import glob
+import argparse
+from colorama import init as colorama_init
+from colorama import Fore
+from colorama import Style
+
+colorama_init()
+
+myhome = str(Path.home())
+COLOURSCHEMEDIR = rf"{myhome}/.config/Spice/colourschemes/"
+templatepath = rf"{myhome}/.config/Spice/templates/*"
+templatedir = rf"{myhome}/.config/Spice/templates/"
+
+def theme(args):
+    themename = "foo" #random code to fix stupid python indent errors :)
+#args.theme[0]
+parser = argparse.ArgumentParser(description = "Instantly theme your whole desktop", prog="spice")
+
+opt = parser.add_argument_group("options")
+
+# add argument
+opt.add_argument("-l", "--list", action='store_true',
+				help = "List all available themes")
+opt.add_argument("-p", "--path",  metavar = "[themepath]", type = str, default = COLOURSCHEMEDIR,
+				help = "path to custom theme file")
+opt.add_argument("-t", "--theme",  metavar = "[themename]", type = str, default = None)
+opt.add_argument("-b", "--background",  metavar = "[colour]", type = str, default = COLOURSCHEMEDIR,
+				help = "path to custom theme file")
+
+
+
+# parse the arguments from standard input
+args = parser.parse_args()
+ 
+# check if add argument has any input data.
+# If it has, then print sum of the given numbers
+
+if args.theme != None:
+#		theme(args)
+    COLOURSCHEMEDIR = args.path
+    themename = args.theme
+    os.system('rm $HOME/.config/Spice/current.py')
+    os.system('ln -s {}{}.bash $HOME/.config/Spice/current.py' .format(COLOURSCHEMEDIR, themename))
+elif args.list != None:
+    os.system('ls $HOME/.config/Spice/colourschemes | cut -f1 -d"."')	
+    raise SystemExit(1)		
+
+from current import *	# Import current theme
+
+#if args.background != None:
+#    background = args.background
+
+dict_replace = {
+	'{FOREGROUND}': foreground,
+	'{BACKGROUND}': background,
+	'{CURSOR}': cursor,
+	'{BLACK}': color0,
+	'{ALTBLACK}': color8,
+	'{RED}': color1,
+	'{ALTRED}': color9,
+	'{GREEN}': color2,
+	'{ALTGREEN}': color10,
+	'{YELLOW}': color3,
+	'{ALTYELLOW}': color11,
+	'{BLUE}': color4,
+	'{ALTBLUE}': color12,
+	'{MAGENTA}': color5,
+	'{ALTMAGENTA}': color13,
+	'{CYAN}': color6,
+	'{ALTCYAN}': color14,
+	'{WHITE}': color7,
+	'{ALTWHITE}': color15
+}
+
+
+for filepath in glob.iglob(templatepath):
+
+
+#file = abspath(join(dirname(__file__), 'templates/foo.txt'))
+	file_open = open(filepath, 'r')
+	file_read = file_open.read()
+	file_open.close()
+
+	templatename1 = filepath.replace('\\', '/')
+	templatename2 = templatename1.replace(templatedir, '')
+	templatename = myhome + templatename2
+#	file_out = os.system("ls ./templates/ | tr '\\' '/'")
+#new_file = abspath(join(dirname(__file__), 'bar.txt'))
+	new_file_open = open(templatename, 'w')
+
+
+	def replace_content(dict_replace, target):
+		"""Based on dict, replaces key with the value on the target."""
+
+		for check, replacer in list(dict_replace.items()):
+			target = sub(check, replacer, target)
+	        # target = target.replace(check, replacer)
+
+		return target
+
+
+	new_content = replace_content(dict_replace, file_read)
+	new_file_open.write(new_content)
+	new_file_open.close()
+# Test
+
+
+#print('Installed themes')
+#print('Reloading programs')
+os.system(myhome+'/.config/Spice/reload.sh')
+#print('Done!')
+print('Set the {} theme.' .format(themename))
+os.system('neofetch')
+#class style():
+#    BLACK = '\033[0;40m'
+#    RED = '\033[0;41m'
+#    GREEN = '\033[42m'
+#    YELLOW = '\033[33m'
+#    BLUE = '\033[34m'
+#    MAGENTA = '\033[35m'
+#    CYAN = '\033[36m'
+#    WHITE = '\033[37m'
+#    UNDERLINE = '\033[4m'
+#    RESET = '\033[0m'
+
+#print(style.BLACK + color1, style.RED + color2)
+#!/usr/bin/env bash
+#os.system('
+#!/usr/bin/env bash
+
+#echo -e "\033[0mNC (No color)"
+#echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
+#echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"
+#echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
+#echo -e "\033[0;36mCYAN\t\033[1;36mLIGHT_CYAN"
+#echo -e "\033[0;31mRED\t\033[1;31mLIGHT_RED"
+#echo -e "\033[0;35mPURPLE\t\033[1;35mLIGHT_PURPLE"
+#echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"
+#echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"'')

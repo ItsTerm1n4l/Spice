@@ -1,0 +1,6 @@
+Name=Splash Colors
+ColorBackground={BACKGROUND}
+ColorForeground={FOREGROUND}
+ColorSelectionBackground={CURSOR}
+ColorSelection={BACKGROUND}
+ColorPalette={BLACK};{RED};{GREEN};{YELLOW};{BLUE};{MAGENTA};{CYAN};{WHITE};{ALTBLACK};{ALTRED};{ALTGREEN};{ALTYELLOW};{ALTBLUE};{ALTMAGENTA};{ALTCYAN};{ALTWHITE}
