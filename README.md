@@ -41,15 +41,15 @@ Thank you!
 >Catppuccin-mocha    
 >challenger-deep    
 >Dracula  
->Embark
->Everblush     
+>Embark    
+>Everblush            
 >Everforest  
 >Gruvbox  
 >Gruvbox-material  
 >Kanagawa-storm  
 >Kanagawa-wave  
 >Moonlight2    
->Monokai
+>Monokai    
 >Nightfox      
 >Nord   
 >Nordic-night    
@@ -57,7 +57,7 @@ Thank you!
 >Rose-pine    
 >Rose-pine-dawn    
 >Rose-pine-moon    
->Tokyo-night  		
+>Tokyo-night    
 >Tokyo-storm		
 
 Thanks:

@@ -8,6 +8,7 @@ import argparse
 from colorama import init as colorama_init
 from colorama import Fore
 from colorama import Style
+#from current import background	# Import current theme
 
 colorama_init()
 
@@ -27,10 +28,10 @@ opt = parser.add_argument_group("options")
 opt.add_argument("-l", "--list", action='store_true',
 				help = "List all available themes")
 opt.add_argument("-p", "--path",  metavar = "[themepath]", type = str, default = COLOURSCHEMEDIR,
-				help = "path to custom theme file")
+				help = "Path to folder containing custom theme file")
 opt.add_argument("-t", "--theme",  metavar = "[themename]", type = str, default = None)
-opt.add_argument("-b", "--background",  metavar = "[colour]", type = str, default = COLOURSCHEMEDIR,
-				help = "path to custom theme file")
+opt.add_argument("-b", "--background",  metavar = "[colour]", type = str, # default = "#ffff00",
+                 help = 'Custom background HEX color e.g."ff0000"')
 
 
 
@@ -46,14 +47,17 @@ if args.theme != None:
     themename = args.theme
     os.system('rm $HOME/.config/Spice/current.py')
     os.system('ln -s {}{}.bash $HOME/.config/Spice/current.py' .format(COLOURSCHEMEDIR, themename))
+
 elif args.list != None:
     os.system('ls $HOME/.config/Spice/colourschemes | cut -f1 -d"."')	
     raise SystemExit(1)		
 
 from current import *	# Import current theme
 
-#if args.background != None:
-#    background = args.background
+if args.background != None:
+    background = args.background
+else :
+    background = background
 
 dict_replace = {
 	'{FOREGROUND}': foreground,
@@ -112,7 +116,7 @@ for filepath in glob.iglob(templatepath):
 
 #print('Installed themes')
 #print('Reloading programs')
-os.system(myhome+'/.config/Spice/reload.sh')
+os.system(myhome+'/.config/Spice/reload.sh & &> /dev/null')
 #print('Done!')
 print('Set the {} theme.' .format(themename))
 os.system('neofetch')
