@@ -93,8 +93,6 @@ for filepath in glob.iglob(templatepath):
 	templatename1 = filepath.replace('\\', '/')
 	templatename2 = templatename1.replace(templatedir, '')
 	templatename = myhome + templatename2
-#	file_out = os.system("ls ./templates/ | tr '\\' '/'")
-#new_file = abspath(join(dirname(__file__), 'bar.txt'))
 	new_file_open = open(templatename, 'w')
 
 
@@ -114,35 +112,10 @@ for filepath in glob.iglob(templatepath):
 # Test
 
 
-#print('Installed themes')
-#print('Reloading programs')
+print('Applying themes')
+print('Reloading programs')
 os.system(myhome+'/.config/Spice/reload.sh & &> /dev/null')
 #print('Done!')
 print('Set the {} theme.' .format(themename))
-os.system('neofetch')
-#class style():
-#    BLACK = '\033[0;40m'
-#    RED = '\033[0;41m'
-#    GREEN = '\033[42m'
-#    YELLOW = '\033[33m'
-#    BLUE = '\033[34m'
-#    MAGENTA = '\033[35m'
-#    CYAN = '\033[36m'
-#    WHITE = '\033[37m'
-#    UNDERLINE = '\033[4m'
-#    RESET = '\033[0m'
+#os.system('neofetch')
 
-#print(style.BLACK + color1, style.RED + color2)
-#!/usr/bin/env bash
-#os.system('
-#!/usr/bin/env bash
-
-#echo -e "\033[0mNC (No color)"
-#echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
-#echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"
-#echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
-#echo -e "\033[0;36mCYAN\t\033[1;36mLIGHT_CYAN"
-#echo -e "\033[0;31mRED\t\033[1;31mLIGHT_RED"
-#echo -e "\033[0;35mPURPLE\t\033[1;35mLIGHT_PURPLE"
-#echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"
-#echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"'')
