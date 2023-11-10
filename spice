@@ -5,9 +5,6 @@ import os
 from pathlib import Path
 import glob
 import argparse
-from colorama import init as colorama_init
-from colorama import Fore
-from colorama import Style
 #from current import background	# Import current theme
 
 colorama_init()
@@ -114,7 +111,7 @@ for filepath in glob.iglob(templatepath):
 
 print('Applying themes')
 print('Reloading programs')
-os.system(myhome+'/.config/Spice/reload.sh & &> /dev/null')
+os.system(myhome+'/.config/Spice/reload.sh')
 #print('Done!')
 print('Set the {} theme.' .format(themename))
 #os.system('neofetch')
